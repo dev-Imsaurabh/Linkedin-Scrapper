@@ -16,18 +16,14 @@ app.get("/:id",(req,res)=>{
     const {id} = req.params
 
      getfollowers= async()=>{
-       try {
+     
         let {followers,connections} = await run(id)
         console.log(followers,connections)
         res.send({
             followers,
             connections
         })
-       } catch (error) {
-        res.send({
-            error:error
-        })
-       }
+       
 
     }
     getfollowers()
