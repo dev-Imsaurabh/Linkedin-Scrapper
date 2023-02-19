@@ -11,10 +11,15 @@ app.get("/",(req,res)=>{
      getfollowers= async()=>{
         let {followers,connections} = await run(id)
         console.log(followers,connections)
-        res.send({
-            followers,
-            connections
-        })
+        if(followers!==""){
+            res.send({
+                followers,
+                connections
+            })
+        }else{
+            res.send("error")
+        }
+       
 
     }
     getfollowers()
