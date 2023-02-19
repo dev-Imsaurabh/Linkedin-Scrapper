@@ -1,6 +1,7 @@
 const puppeteer = require("puppeteer")
 const express = require("express")
 require("dotenv").config()
+let port = process.env.PORT||4000
 
 const app = express()
 
@@ -36,8 +37,8 @@ app.get("/:id",(req,res)=>{
 })
 
 
-app.listen(process.env.PORT,()=>{
-    console.log("Server is running on",process.env.PORT)
+app.listen(port,()=>{
+    console.log("Server is running on",port)
 })
 
 async function run(id){
