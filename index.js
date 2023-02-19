@@ -9,6 +9,7 @@ app.get("/",(req,res)=>{
     res.send({
         message:"Running"
     })
+
 })
 
 app.get("/:id",(req,res)=>{
@@ -40,8 +41,12 @@ app.listen(port,()=>{
 async function run(id){
 
     //open browser
-    const browser = await puppeteer.launch()
-    //open new tab
+ const browser = await puppeteer.launch();    
+//  {
+//   headless: true, 
+//   args: ['--no-sandbox', '--disable-setuid-sandbox'], 
+// }
+  //open new tab
     const page = await browser.newPage()
     //enter url
     await page.goto(`https://www.linkedin.com/in/${id}`)
@@ -52,11 +57,13 @@ async function run(id){
     elements.map(element => element.textContent)
   );
 
+  
   let followers =textContentArray[0].split("\n")[1].trim()
   let connections = textContentArray[1].trim()
   
     //close the browser
     await browser.close()
+
 
   return {followers,connections}
 
