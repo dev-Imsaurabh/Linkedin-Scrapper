@@ -41,7 +41,7 @@ async function run(id) {
   //open new tab
   const page = await browser.newPage();
   //enter url
-  await page.goto(`https://www.linkedin.com/in/${id}`);
+  await page.goto(`https://www.linkedin.com/in/${id}?original_referer=`);
 
   //wait for navigation to complete
   await page.waitForNavigation({ waitUntil: "networkidle0" });
