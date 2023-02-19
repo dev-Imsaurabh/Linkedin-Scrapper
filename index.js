@@ -5,21 +5,28 @@ require("dotenv").config()
 const app = express()
 
 app.get("/",(req,res)=>{
+    res.send({
+        message:"Running"
+    })
+})
+
+app.get("/:id",(req,res)=>{
  
-    const {id} = req.query
+    const {id} = req.params
 
      getfollowers= async()=>{
+       try {
         let {followers,connections} = await run(id)
         console.log(followers,connections)
-        if(followers!==""){
-            res.send({
-                followers,
-                connections
-            })
-        }else{
-            res.send("error")
-        }
-       
+        res.send({
+            followers,
+            connections
+        })
+       } catch (error) {
+        res.send({
+            error:error
+        })
+       }
 
     }
     getfollowers()
