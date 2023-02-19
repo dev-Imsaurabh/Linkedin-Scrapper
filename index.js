@@ -39,10 +39,12 @@ async function run(id) {
   // }
 
   //open new tab
+
   const page = await browser.newPage();
   //enter url
-  await page.goto(`https://www.linkedin.com/in/${id}?original_referer=`);
+  await page.goto(`https://www.linkedin.com/in/${id}`);
 
+  
   //wait for navigation to complete
   await page.waitForNavigation({ waitUntil: "networkidle0" });
 
@@ -67,7 +69,7 @@ async function run(id) {
   //close the browser
   await browser.close();
 
-  return { followers:null, connections:null };
+  return { followers, connections };
     
   }
 
